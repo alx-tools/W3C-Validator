@@ -22,7 +22,7 @@ Multiple files:
 ./w3c_validator.py index.html header.html styles/common.css
 ```
 
-All errors are print in `STDERR`
+All errors are printed in `STDERR`
 
 
 ##References
