@@ -26,6 +26,8 @@ Multiple files:
 
 All errors are printed in `STDERR`
 
+Return:
+Exit status is the # of errors, 0 on Success
 
 References
 
@@ -99,7 +101,9 @@ def __analyse(file_path):
     return nb_errors
 
 
-def __main_app():
+def __files_loop():
+    """Loop that analyses for each file from input arguments
+    """
     nb_errors = 0
     for file_path in sys.argv[1:]:
         nb_errors += __analyse(file_path)
@@ -116,4 +120,4 @@ if __name__ == "__main__":
 
     """execute tests, then exit. Exit status = # of errors (0 on success)
     """
-    sys.exit(__main_app())
+    sys.exit(__files_loop())
