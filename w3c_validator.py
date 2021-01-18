@@ -26,6 +26,7 @@ Return:
 Exit status is the # of errors, 0 on Success
 
 """
+import sys
 
 
 def check_file_extension(file):
