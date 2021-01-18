@@ -71,3 +71,11 @@ def check_os():
     else:
         sys.exit("OS could not be detected. Check requirements in README file")
 
+if __name__ == "__main__":
+    """Main"""
+    error_message = "Usage: w3c_vallidatory.py index.html styles.css"
+    if len(sys.argv) < 2:
+        error_message = "Usage: w3c_vallidatory.py index.html styles.css"
+        sys.exit(f"Not enough arguments provided\n{error_message}")
+    check_files()
+    run()
