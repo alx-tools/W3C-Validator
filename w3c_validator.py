@@ -32,3 +32,15 @@ def check_file_extension(file):
     """Check for valid file extensions and return a boolean"""
     return file.endswith(".css") or file.endswith(
         ".html") or file.endswith(".svg")
+
+
+def check_files():
+    """Checks that arguments contain proper files"""
+    for file in sys.argv[1:]:
+        try:
+            if not check_file_extension(file):
+                raise ValueError
+        except ValueError:
+            sys.exit(
+                "No files with a valid extension found.\n"
+                "Files should end with '.html', '.css' or '.svg'")
