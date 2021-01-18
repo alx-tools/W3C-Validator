@@ -45,3 +45,13 @@ def check_files():
             sys.exit(
                 "No files with a valid extension found.\n"
                 "Files should end with '.html', '.css' or '.svg'")
+
+def run(options="--errors-only"):
+    """
+    Collect arguments, check for Operating System and execute
+    binaries
+    """
+    arguments = " ".join(sys.argv[1:])
+    current_os = check_os()
+    process = subprocess.Popen([current_os, options, arguments])
+    process.wait()
