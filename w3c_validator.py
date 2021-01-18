@@ -26,12 +26,9 @@ Return:
 Exit status is the # of errors, 0 on Success
 
 """
-import sys
 
 
 def check_file_extension(file):
     """Check for valid file extensions and return a boolean"""
     return file.endswith(".css") or file.endswith(
         ".html") or file.endswith(".svg")
-
-
