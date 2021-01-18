@@ -55,3 +55,19 @@ def run(options="--errors-only"):
     current_os = check_os()
     process = subprocess.Popen([current_os, options, arguments])
     process.wait()
+
+
+def check_os():
+    """
+    Check Operating System and return proper path to binary
+    """
+    operating_system = platform.system()
+    if operating_system == "Linux":
+        return './lib/linux-vnu-runtime-image/bin/vnu'
+    elif operating_system == "Darwin":
+        return './lib/macos-vnu-runtime-image/bin/vnu'
+    elif operating_system == "Windows":
+        return './lib/windows-vnu-runtime-image/bin/vnu'
+    else:
+        sys.exit("OS could not be detected. Check requirements in README file")
+
