@@ -41,13 +41,13 @@ import requests
 def __print_stdout(msg):
     """Print message in STDOUT
     """
-    sys.stdout.write(msg)
+    sys.stdout.buffer.write(msg.encode('utf-8'))
 
 
 def __print_stderr(msg):
     """Print message in STDERR
     """
-    sys.stderr.write(msg)
+    sys.stderr.buffer.write(msg.encode('utf-8'))
 
 
 def __analyse_html(file_path):
