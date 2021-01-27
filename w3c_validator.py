@@ -54,7 +54,7 @@ def __analyse_html(file_path):
     """Start analyse of HTML file
     """
     h = {'Content-Type': "text/html; charset=utf-8"}
-    d = open(file_path, "rb").read()
+    d = open(file_path, "r").read()
     u = "https://validator.w3.org/nu/?out=json"
     r = requests.post(u, headers=h, data=d)
     res = []
