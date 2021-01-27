@@ -60,7 +60,7 @@ def __analyse_html(file_path):
     res = []
     messages = r.json().get('messages', [])
     for m in messages:
-        res.append("[{}:{}] {}".format(file_path, m['lastLine'], m['message']))
+        res.append(f"[{file_path}:{m['lastLine']}] {m['message']}")
     return res
 
 
@@ -74,7 +74,7 @@ def __analyse_css(file_path):
     res = []
     errors = r.json().get('cssvalidation', {}).get('errors', [])
     for e in errors:
-        res.append("[{}:{}] {}".format(file_path, e['line'], e['message']))
+        res.append(f"[{file_path}:{e['line']}] {e['message']}")
     return res
 
 
@@ -91,13 +91,13 @@ def __analyse(file_path):
 
         if len(result) > 0:
             for msg in result:
-                __print_stderr("{}\n".format(msg))
+                __print_stderr(f"{msg}\n")
                 nb_errors += 1
         else:
-            __print_stdout("{}: OK\n".format(file_path))
+            __print_stdout(f"{file_path}: OK\n")
 
     except Exception as e:
-        __print_stderr("[{}] {}\n".format(e.__class__.__name__, e))
+        __print_stderr(f"[{e.__class__.__name__}] {e}\n")
     return nb_errors
 
 
