@@ -36,6 +36,7 @@ https://developer.mozilla.org/en-US/
 """
 import sys
 import requests
+import os
 
 
 def __print_stdout(msg):
@@ -59,8 +60,16 @@ def __analyse_html(file_path):
     r = requests.post(u, headers=h, data=d)
     res = []
     messages = r.json().get('messages', [])
+    # Check that files have something in them
+    if os.path.getsize(file_path) == 0:
+        raise OSError(f"File {file_path} is empty")
+
     for m in messages:
-        res.append(f"[{file_path}:{m['lastLine']}] {m['message']}")
+        # Capture files that have incomplete or broken HTML
+        if m['type'] == 'error' or m['type'] == 'info':
+            res.append(f"[{file_path}] {m['message']}")
+        else:
+            res.append(f"[{file_path}:{m['lastLine']}] {m['message']}")
     return res
 
 
