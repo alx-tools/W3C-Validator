@@ -67,9 +67,9 @@ def __analyse_html(file_path):
     for m in messages:
         # Capture files that have incomplete or broken HTML
         if m['type'] == 'error' or m['type'] == 'info':
-            res.append(f"[{file_path}] {m['message']}")
+            res.append("[{}] {}".format(file_path, m['message']))
         else:
-            res.append(f"[{file_path}:{m['lastLine']}] {m['message']}")
+            res.append("[{}:{}] {}".format(file_path, m['lastLine'], m['message']))
     return res
 
 
@@ -81,9 +81,10 @@ def __analyse_css(file_path):
     u = "http://jigsaw.w3.org/css-validator/validator"
     r = requests.post(u, data=d, files=f)
     res = []
+    # Check if there are errors, then append them to the response
     errors = r.json().get('cssvalidation', {}).get('errors', [])
     for e in errors:
-        res.append(f"[{file_path}:{e['line']}] {e['message']}")
+        res.append("[{}:{}] {}".format(file_path, e['line'], e['message']))
     return res
 
 
@@ -100,13 +101,13 @@ def __analyse(file_path):
 
         if len(result) > 0:
             for msg in result:
-                __print_stderr(f"{msg}\n")
+                __print_stderr("{}\n".format(msg))
                 nb_errors += 1
         else:
-            __print_stdout(f"{file_path}: OK\n")
+            __print_stdout("{}: OK\n".format(file_path))
 
     except Exception as e:
-        __print_stderr(f"[{e.__class__.__name__}] {e}\n")
+        __print_stderr("[{}] {}\n".format(e.__class__.__name__, e))
     return nb_errors
 
 
