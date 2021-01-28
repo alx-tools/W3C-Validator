@@ -4,8 +4,8 @@ For HTML and CSS files.
 
 Based on 2 APIs:
 
-- https://validator.w3.org/nu/
-- http://jigsaw.w3.org/css-validator/validator
+[Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
+[CSS Validator Web Service API](https://jigsaw.w3.org/css-validator/api.html)
 
 ## Requirements
 [Python 3](https://www.python.org/downloads/)
@@ -41,8 +41,3 @@ Multiple files:
 ```
 
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
-
-
-## References
-[The Nu Html Checker (v.Nu)](https://github.com/validator/validator)
-[Nu Html Checker Checker output format](https://github.com/validator/validator/wiki/Output-%C2%BB-JSON)
