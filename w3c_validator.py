@@ -61,15 +61,14 @@ def __analyse_html(file_path):
     res = []
     messages = r.json().get('messages', [])
     # Check that files have something in them
-    if os.path.getsize(file_path) == 0:
-        raise OSError(f"File {file_path} is empty")
 
     for m in messages:
         # Capture files that have incomplete or broken HTML
         if m['type'] == 'error' or m['type'] == 'info':
             res.append("[{}] {}".format(file_path, m['message']))
         else:
-            res.append("[{}:{}] {}".format(file_path, m['lastLine'], m['message']))
+            res.append("[{}:{}] {}".format(
+                file_path, m['lastLine'], m['message']))
     return res
 
 
@@ -94,17 +93,25 @@ def __analyse(file_path):
     nb_errors = 0
     try:
         result = None
+
         if file_path.endswith('.css'):
             result = __analyse_css(file_path)
-        else:
+        elif file_path.endswith((".html", "html", ".svg")):
             result = __analyse_html(file_path)
+        else:
+            allowed_files = "'.css', '.html', '.htm' and '.svg'"
+            raise OSError(
+                "File {} does not have a valid file extension. Only {} are allowed.".format(file_path, allowed_files))
+
+        if os.path.getsize(file_path) == 0:
+            raise OSError(f"File {file_path} is empty")
 
         if len(result) > 0:
             for msg in result:
                 __print_stderr("{}\n".format(msg))
                 nb_errors += 1
         else:
-            __print_stdout("{}: OK\n".format(file_path))
+            __print_stdout("{} => OK\n".format(file_path))
 
     except Exception as e:
         __print_stderr("[{}] {}\n".format(e.__class__.__name__, e))
