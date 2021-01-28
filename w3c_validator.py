@@ -101,7 +101,9 @@ def __analyse(file_path):
         else:
             allowed_files = "'.css', '.html', '.htm' and '.svg'"
             raise OSError(
-                "File {} does not have a valid file extension. Only {} are allowed.".format(file_path, allowed_files))
+                "File {} does not have a valid file extension. Only {} are "
+                "allowed.".format(file_path, allowed_files)
+                )
 
         if os.path.getsize(file_path) == 0:
             raise OSError(f"File {file_path} is empty")
