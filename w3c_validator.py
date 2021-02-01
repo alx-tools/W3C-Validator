@@ -50,7 +50,8 @@ def __analyse_html(file_path):
     """Start analyse of HTML file
     """
     h = {'Content-Type': "text/html; charset=utf-8"}
-    d = open(file_path, "r").read()
+    # Open files in binary mode => https://requests.readthedocs.io/en/master/user/advanced/
+    d = open(file_path, "rb").read()
     u = "https://validator.w3.org/nu/?out=json"
     r = requests.post(u, headers=h, data=d)
     res = []
@@ -71,6 +72,7 @@ def __analyse_css(file_path):
     """Start analyse of CSS file
     """
     d = {'output': "json"}
+    # Open files in binary mode => https://requests.readthedocs.io/en/master/user/advanced/
     f = {'file': (file_path, open(file_path, 'rb'), 'text/css')}
     u = "http://jigsaw.w3.org/css-validator/validator"
     r = requests.post(u, data=d, files=f)
