@@ -1,17 +1,14 @@
 # W3C validator for Holberton School
+For HTML, XHTML, SVG and CSS files
 
-For HTML and CSS files.
-
-Based on 2 APIs:
-
-[Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
-[CSS Validator Web Service API](https://jigsaw.w3.org/css-validator/api.html)
+Based on 1 API:
+- [Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
 
 ## Requirements
-[Python 3](https://www.python.org/downloads/)
-[Requests: HTTP for Humans™](https://requests.readthedocs.io/en/master/index.html)
+- [Python 3](https://www.python.org/downloads/)
+- [Requests: HTTP for Humans™](https://requests.readthedocs.io/en/master/index.html)
 
-You can install requests using pip:
+You can install Requests using pip:
 ```
 python 3 -m pip install requests
 ```
@@ -26,18 +23,22 @@ git clone https://github.com/holbertonschool/W3C-Validator.git
 
 2. Run shell script (see example in [usage](#usage) section below)
 
-## Usage:
+## Usage
 
-Simple file:
+Single file:
 
 ```sh
 ./w3c_validator.py index.html
 ```
 
+```sh
+./w3c_validator.py css/styles.css
+```
+
 Multiple files:
 
 ```sh
-./w3c_validator.py index.html header.html styles/common.css
+./w3c_validator.py index.html article.html css/styles.css
 ```
 
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
