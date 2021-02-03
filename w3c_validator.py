@@ -46,18 +46,18 @@ def __print_stderr(msg):
     sys.stderr.buffer.write(msg.encode('utf-8'))
 
 
-def __analyse_html(file_path):
-    """Start analyse of HTML file
+def __validate(file_path, type="html"):
     """
-    h = {'Content-Type': "text/html; charset=utf-8"}
+    Start validation of files
+    """
+    h = {'Content-Type': "{}; charset=utf-8".format(type)}
     # Open files in binary mode => https://requests.readthedocs.io/en/master/user/advanced/
     d = open(file_path, "rb").read()
-    u = "https://validator.w3.org/nu/?out=json"
+    u = "http://localhost:8888/?out=json"
     r = requests.post(u, headers=h, data=d)
     res = []
     messages = r.json().get('messages', [])
-    # Check that files have something in them
-
+    
     for m in messages:
         # Capture files that have incomplete or broken HTML
         if m['type'] == 'error' or m['type'] == 'info':
@@ -68,22 +68,6 @@ def __analyse_html(file_path):
     return res
 
 
-def __analyse_css(file_path):
-    """Start analyse of CSS file
-    """
-    d = {'output': "json"}
-    # Open files in binary mode => https://requests.readthedocs.io/en/master/user/advanced/
-    f = {'file': (file_path, open(file_path, 'rb'), 'text/css')}
-    u = "http://jigsaw.w3.org/css-validator/validator"
-    r = requests.post(u, data=d, files=f)
-    res = []
-    # Check if there are errors, then append them to the response
-    errors = r.json().get('cssvalidation', {}).get('errors', [])
-    for e in errors:
-        res.append("[{}:{}] {}".format(file_path, e['line'], e['message']))
-    return res
-
-
 def __analyse(file_path):
     """Start analyse of a file and print the result
     """
@@ -91,19 +75,21 @@ def __analyse(file_path):
     try:
         result = None
 
-        if file_path.endswith('.css'):
-            result = __analyse_css(file_path)
-        elif file_path.endswith((".html", "html", ".svg")):
-            result = __analyse_html(file_path)
+        if os.path.getsize(file_path) == 0:
+            raise OSError(f"File {file_path} is empty")
+
+        if file_path.endswith(".css"):
+            result = __validate(file_path, "text/css")
+        elif file_path.endswith((".html", "htm")):
+            result = __validate(file_path, "text/html")
+        elif file_path.endswith(".svg"):
+            result = __validate(file_path, "image/svg+xml")
         else:
             allowed_files = "'.css', '.html', '.htm' and '.svg'"
             raise OSError(
                 "File {} does not have a valid file extension. Only {} are "
                 "allowed.".format(file_path, allowed_files)
                 )
-
-        if os.path.getsize(file_path) == 0:
-            raise OSError(f"File {file_path} is empty")
 
         if len(result) > 0:
             for msg in result:
