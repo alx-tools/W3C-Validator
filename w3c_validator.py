@@ -46,7 +46,7 @@ def __print_stderr(msg):
     sys.stderr.buffer.write(msg.encode('utf-8'))
 
 
-def __validate(file_path, type="html"):
+def __validate(file_path, type):
     """
     Start validation of files
     """
@@ -57,7 +57,6 @@ def __validate(file_path, type="html"):
     r = requests.post(u, headers=h, data=d)
     res = []
     messages = r.json().get('messages', [])
-    
     for m in messages:
         # Capture files that have incomplete or broken HTML
         if m['type'] == 'error' or m['type'] == 'info':
@@ -80,7 +79,7 @@ def __analyse(file_path):
 
         if file_path.endswith(".css"):
             result = __validate(file_path, "text/css")
-        elif file_path.endswith((".html", "htm")):
+        elif file_path.endswith((".html", ".htm")):
             result = __validate(file_path, "text/html")
         elif file_path.endswith(".svg"):
             result = __validate(file_path, "image/svg+xml")

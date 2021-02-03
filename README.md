@@ -1,5 +1,5 @@
 # W3C validator for Holberton School
-For HTML, XHTML, SVG and CSS files
+For HTML, CSS and SVG files
 
 Based on 1 API:
 - [Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
