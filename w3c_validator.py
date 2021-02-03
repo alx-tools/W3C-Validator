@@ -56,7 +56,7 @@ def __validate(file_path, type):
     # Open files in binary mode:
     # https://requests.readthedocs.io/en/master/user/advanced/
     d = open(file_path, "rb").read()
-    u = "http://localhost:8888/?out=json"
+    u = "https://validator.w3.org/nu/?out=json"
     r = requests.post(u, headers=h, data=d)
     res = []
     messages = r.json().get('messages', [])
