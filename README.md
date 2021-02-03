@@ -4,8 +4,19 @@ For HTML and CSS files.
 
 Based on 2 APIs:
 
-- https://validator.w3.org/nu/
-- http://jigsaw.w3.org/css-validator/validator
+[Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
+[CSS Validator Web Service API](https://jigsaw.w3.org/css-validator/api.html)
+
+## Requirements
+[Python 3](https://www.python.org/downloads/)
+[Requests: HTTP for Humans™](https://requests.readthedocs.io/en/master/index.html)
+
+You can install requests using pip:
+```
+python 3 -m pip install requests
+```
+
+If you don't have pip installed, you can get it [here](https://pypi.org/project/pip/).
 
 ## Installation
 1. Clone this repo
@@ -30,8 +41,3 @@ Multiple files:
 ```
 
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
-
-
-## References
-
-https://developer.mozilla.org/en-US/
