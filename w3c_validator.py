@@ -58,6 +58,10 @@ def __validate(file_path, type):
     d = open(file_path, "rb").read()
     u = "https://validator.w3.org/nu/?out=json"
     r = requests.post(u, headers=h, data=d)
+
+    if not r.status_code < 400:
+        raise ConnectionError("Unable to connect to API endpoint.")
+
     res = []
     messages = r.json().get('messages', [])
     for m in messages:
