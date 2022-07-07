@@ -48,7 +48,7 @@ If you get this error you do not have the module `requests` installed in your sy
 
 You can install `requests` using pip:
 ```
-python 3 -m pip install requests
+python3 -m pip install requests
 ```
 
 If you don't have `pip` installed, you can get it [here](https://pypi.org/project/pip/).
