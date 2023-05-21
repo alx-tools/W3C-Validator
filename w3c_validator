@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# calls the w3c_validator.py and passes the arguments
+# to it
+
+if [ -e "./w3c_validator.py" ]; then
+    python3 "./w3c_validator.py" "$@"
+else
+    echo "Error: w3c_validator.py not found"
+fi
