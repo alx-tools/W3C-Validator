@@ -21,6 +21,10 @@ Multiple files:
 ./w3c_validator.py index.html header.html styles/common.css
 ```
 
+```
+./w3c_validator.py *.html styles/*.css
+```
+
 All errors are printed in `STDERR`
 
 Return:
@@ -29,6 +33,7 @@ Exit status is the # of errors, 0 on Success
 import sys
 import requests
 import os
+import glob
 
 
 def __print_stdout(msg):
@@ -113,8 +118,10 @@ def __files_loop():
     """Loop that analyses for each file from input arguments
     """
     nb_errors = 0
-    for file_path in sys.argv[1:]:
-        nb_errors += __analyse(file_path)
+    for pattern in sys.argv[1:]:
+        files = glob.glob(pattern)
+        for file_path in files:
+            nb_errors += __analyse(file_path)
 
     return nb_errors
 
