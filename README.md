@@ -32,6 +32,10 @@ Multiple files:
 ./w3c_validator.py index.html article.html css/styles.css
 ```
 
+```sh
+./w3c_validator.py *.html css/*.css
+```
+
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
 
 ## Troubleshooting
