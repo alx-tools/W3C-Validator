@@ -3,7 +3,7 @@
 # Checking if the script is executed with root privileges
 if [ "$(id -u)" != "0" ];
 then
-    echo "Permission Denied."
+    echo "Permission Denied: Not root"
     exit 1
 fi
 

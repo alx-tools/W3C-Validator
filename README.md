@@ -14,7 +14,13 @@ Based on 1 API:
 git clone https://github.com/holbertonschool/W3C-Validator.git
 ```
 
-2. Run the validator command
+2. Run the install script
+
+```sh
+sudo ./install
+```
+
+3. Run the validator command
 
 Single file:
 
