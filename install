@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Checking if the script is executed with root privileges
+if [ "$(id -u)" != "0" ];
+then
+    echo "Permission Denied: Not root"
+    exit 1
+fi
+
+# Defining the destination directory
+DEST_DIR="/usr/local/bin"
+
+# Checking if the w3c_validator already exists
+if [ -e "${DEST_DIR}/w3c_validator" ];
+then
+    echo "A file named w3c_validator already exists in /usr/local/bin."
+    echo "Please remove or rename it and try again."
+    exit 1
+fi
+
+# Copying w3c_validator to the destination directory
+cp "w3c_validator.py" "${DEST_DIR}/w3c_validator"
+
+# Making the script executable
+chmod +x "${DEST_DIR}/w3c_validator"
+
+echo "w3c_validator has been installed successfully."

@@ -14,22 +14,28 @@ Based on 1 API:
 git clone https://github.com/holbertonschool/W3C-Validator.git
 ```
 
-2. Run the validator command from within
+2. Run the install script
+
+```sh
+sudo ./install
+```
+
+3. Run the validator command
 
 Single file:
 
 ```sh
-./w3c_validator.py index.html
+w3c_validator index.html
 ```
 
 ```sh
-./w3c_validator.py css/styles.css
+w3c_validator css/styles.css
 ```
 
 Multiple files:
 
 ```sh
-./w3c_validator.py index.html article.html css/styles.css
+w3c_validator index.html article.html css/styles.css
 ```
 
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
