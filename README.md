@@ -3,7 +3,7 @@
 
 ## Table of Contents
  - [Requirements](#requirements)
- - [Usage](#quickstart)
+ - [Quickstart](#quickstart)
  - [Troubleshooting](#troubleshooting)
  - [Contributing](#contributing)
 
