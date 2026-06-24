@@ -1,7 +1,15 @@
 # W3C validator for Holberton School
-For HTML, CSS and SVG files
+> This program is designed to validate `.HTML`, `.CSS`, and `.SVG` files. It checks these files for compliance with [W3C](https://www.w3.org/) standards, helping to ensure that your web content is accessible, reliable, and follows established web standards. This is crucial for maintaining compatibility across various web browsers and platforms. By using this program, developers can catch and fix errors early in the development process, improving the quality of their code and potentially saving time and resources.
 
-Based on 1 API:
+## Table of Contents
+ - [Requirements](#requirements)
+ - [Quickstart](#quickstart)
+ - [Troubleshooting](#troubleshooting)
+ - [Contributing](#contributing)
+
+---
+
+#### Based on 1 API:
 - [Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
 
 ## Requirements
@@ -52,3 +60,14 @@ python3 -m pip install requests
 ```
 
 If you don't have `pip` installed, you can get it [here](https://pypi.org/project/pip/).
+
+## Contributing
+
+To contribute to this project, follow these steps:
+  * Fork this repository.
+  * Create a branch: `git checkout -b <branch_name>`.
+  * Make your changes and commit them: `git commit -m '<commit_message>'`.
+  * Push to the original branch: `git push`
+  * Create the pull request.
+
+Alternatively see the Github documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
