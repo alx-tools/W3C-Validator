@@ -1,5 +1,7 @@
 # W3C validator for Holberton School
-For HTML, CSS and SVG files
+A script that checks the conformance of HTML, CSS, and SVG files against W3C standards.
+
+This fork enhances the original W3C-Validator by adding wildcard support, allowing you to validate multiple files at once.
 
 Based on 1 API:
 - [Markup Validator Web Service API](https://validator.w3.org/docs/api.html)
@@ -11,7 +13,7 @@ Based on 1 API:
 ## Quickstart
 1. Clone this repo
 ```sh
-git clone https://github.com/holbertonschool/W3C-Validator.git
+git clone https://github.com/uosyph/W3C-Validator.git
 ```
 
 2. Run the validator command from within
@@ -30,6 +32,10 @@ Multiple files:
 
 ```sh
 ./w3c_validator.py index.html article.html css/styles.css
+```
+
+```sh
+./w3c_validator.py *.html css/*.css
 ```
 
 All errors are printed in `STDERR`; Exit status = # of errors (0 on success)
